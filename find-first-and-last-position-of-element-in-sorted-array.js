@@ -1,8 +1,4 @@
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
- */
+
 var searchRange = function (nums, target) {
 
     function binarySearch(nums, target, leftMost) {
