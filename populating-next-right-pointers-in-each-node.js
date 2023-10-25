@@ -8,17 +8,27 @@ class Node {
 }
 
 function connect(root) {
-    if (!root || !root.left) return root;
+    if (!root) return root;
     
-    root.left.next = root.right;
-    if (root.next) {
-        root.right.next = root.next.left;
+    if (root.left && root.right) {
+        root.left.next = root.right;
+        root.right.next = getNextRight(root);
     }
     
-    connect(root.left);
-    connect(root.right);
+    connect(root.right); // Connect right subtree first
+    connect(root.left);  // Then connect left subtree
     
     return root;
+}
+
+function getNextRight(node) {
+    let temp = node.next;
+    while (temp) {
+        if (temp.left) return temp.left;
+        if (temp.right) return temp.right;
+        temp = temp.next;
+    }
+    return null;
 }
 
 // Helper function to print the tree
@@ -31,7 +41,7 @@ function printTree(root) {
             result.push(temp.val);
             temp = temp.next;
         }
-        result.push('#'); 
+        result.push('#'); // Signifying the end of each level
         current = current.left;
     }
     return result;
