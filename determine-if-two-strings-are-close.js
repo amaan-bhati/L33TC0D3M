@@ -8,6 +8,25 @@ var closeStrings = function (word1, word2) {
 
     letters.fill(0);
 
+    countDistinctLetters(word2, letters);
+    const result2 = getResult(letters);
+
+    return result1.concatenatedLettersStringResult === result2.concatenatedLettersStringResult &&
+        result1.sortedLetterCountStringResult === result2.sortedLetterCountStringResult;
+};
+
+const getResult = (array) => {
+
+    return {
+        concatenatedLettersStringResult: array.reduce((prevItem, newItem, index) => {
+            if (newItem != 0)
+                prevItem += String.fromCharCode(index + 97);
+            return prevItem;
+        }, ''),
+        sortedLetterCountStringResult: array.sort((a, b) => a - b).join('')
+    };
+};
+
 const countDistinctLetters = (string, array) =>
     string.split('').forEach((_, index) => array[string.charCodeAt(index) - 97]++);
     
