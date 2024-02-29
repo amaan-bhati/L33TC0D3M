@@ -1,8 +1,4 @@
-/**
- * @param {string} secret
- * @param {string} guess
- * @return {string}
- */
+
 var getHint = function (secret, guess) {
     let bulls = 0;
     let cows = 0;
